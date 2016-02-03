@@ -1,0 +1,14 @@
+<h1>Estoque:</h1>
+<ul>
+  <% @produtos.each do |produto| %>
+    <li> <b>Nome:</b> <%= produto.name %> <b>Quantidade em estoque:</b> <%= produto.inventory %> <b>Medida:</b> <%= produto.product_type %> | <%= link_to "Comprar para o estoque", new_product_factory_path(produto)%></li>
+    Movimentação de compra:
+    <ul>
+      <% produto.factories.each do |compra| %>
+          <li><%= compra.created_at.strftime('%x') %> comprou <%= compra.selling_quantity %> <%= produto.product_type %> de <%= produto.name %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+</ul>
+
+

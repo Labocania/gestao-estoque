@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  resources :products, only: [:create, :new, :index] do
+    resources :factories, only: [:new, :create]
+  end
+
+=begin
+
+             Prefix Verb URI Pattern                                   Controller#Action
+  product_factories POST /products/:product_id/factories(.:format)     factories#create
+new_product_factory GET  /products/:product_id/factories/new(.:format) factories#new
+           products GET  /products(.:format)                           products#index
+                    POST /products(.:format)                           products#create
+        new_product GET  /products/new(.:format)                       products#new
+        
+=end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

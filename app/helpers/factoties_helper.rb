@@ -1,0 +1,2 @@
+module FactotiesHelper
+end
