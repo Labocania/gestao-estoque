@@ -1,0 +1,21 @@
+<h1>Venda nova:</h1>
+<%= form_for [@produto, @produto.sales.build] do |f| %>
+
+<% if @produto.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@produto.errors.count, "error") %> prohibited this article from being saved:</h2>
+ 
+    <ul>
+    <% @produto.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= f.label :quantidade %>
+<%= f.number_field :sale_quantity, in: 1..100, step: 1, default: 1 %>
+
+<%= f.submit "Vender novo produto" %>
+
+<% end %>

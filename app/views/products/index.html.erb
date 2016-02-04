@@ -2,14 +2,33 @@
 <%= link_to "Adicionar novo produto ao estoque.", new_product_path %> 
 <ul>
   <% @produtos.each do |produto| %>
-    <li> <b>Nome:</b> <%= produto.name %> <b>Quantidade em estoque:</b> <%= produto.inventory %> <b>Medida:</b> <%= produto.product_type %> | <%= link_to "Comprar para o estoque", new_product_factory_path(produto)%></li>
-    Movimentação de compra:
-    <ul>
-      <% produto.factories.each do |compra| %>
-          <li><%= compra.created_at.strftime('%x') %> comprou <%= compra.selling_quantity %> <%= produto.product_type %> de <%= produto.name %> </li>
-      <% end %>
-    </ul>
+    <li> <b>Nome:</b> <%= produto.name %> <b>Quantidade em estoque:</b> <%= produto.inventory %> <b>Medida:</b> <%= produto.product_type %> | <%= link_to "Comprar para o estoque", new_product_factory_path(produto)%> 
+    | <%= link_to "Vender estoque", new_product_sale_path(produto) %></li>
+  <% end %>
+</ul>
+Movimentação de compra e venda:
+<ul>
+  <% @array.each do |prod| %>
+      <li>
+        <% if prod.class.table_name == "factories" %>
+          <%= prod.created_at.strftime('%x %T ') %> comprou <%= prod.selling_quantity %> <%= prod.product.product_type %> de <%= prod.product.name %>
+        <% else %>
+          <%= prod.created_at.strftime('%x %T ') %> vendeu <%= prod.sale_quantity %> <%= prod.product.product_type %> de <%= prod.product.name %>
+        <% end %>
+      </li>
+    <% end %>
+</ul>
+Top 5 vendas do mês:
+
+<ul>
+  <% @relatorio_top.each do |nome, soma| %>
+    <li><%= nome %> <%= soma %></li>
   <% end %>
 </ul>
 
-
+5 piores vendas do mês:
+<ul>
+  <% @relatorio_down.each do |nome, soma| %>
+    <li><%= nome %> <%= soma %></li>
+  <% end %>
+</ul>

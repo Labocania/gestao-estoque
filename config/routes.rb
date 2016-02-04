@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+
   resources :products, only: [:create, :new, :index] do
     resources :factories, only: [:new, :create]
+    resources :sales, only: [:new, :create]
   end
 
 =begin
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
              Prefix Verb URI Pattern                                   Controller#Action
   product_factories POST /products/:product_id/factories(.:format)     factories#create
 new_product_factory GET  /products/:product_id/factories/new(.:format) factories#new
+      product_sales POST /products/:product_id/sales(.:format)         sales#create
+   new_product_sale GET  /products/:product_id/sales/new(.:format)     sales#new
            products GET  /products(.:format)                           products#index
                     POST /products(.:format)                           products#create
         new_product GET  /products/new(.:format)                       products#new
