@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  inventory: 1
-  type: 
+  name: banana
+  inventory: 0
+  product_type: DZ
+  id: 1
 
 two:
-  name: MyString
-  inventory: 1
-  type: 
+  name: maçã
+  inventory: 0
+  product_type: UN
+  id: 2

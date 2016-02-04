@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   def index
     @produtos = Product.all
-    @produto = Product.first
   end
 
   def new

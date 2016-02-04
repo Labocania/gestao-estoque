@@ -12,6 +12,7 @@ class FactoriesController < ApplicationController
       flash[:success] = "Nova compra efetuada."
       redirect_to products_path
     else
+      flash.now[:alert] = "Erro no processo de compra."
       render :new
     end
   end

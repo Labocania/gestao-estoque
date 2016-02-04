@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  selling_quantity: 1
-  product_id: 
+  selling_quantity: 10
+  product_id: 2
 
 two:
-  selling_quantity: 1
-  product_id: 
+  selling_quantity: 20
+  product_id: 1
