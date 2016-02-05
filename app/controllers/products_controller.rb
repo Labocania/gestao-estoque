@@ -37,14 +37,11 @@ class ProductsController < ApplicationController
     array.sort_by(&:created_at)
   end
   
-
+  # Cria uma hash para fazer os relatórios
   def relatorio(produtos)
     hash = {}
     produtos.each do |produto|
       hash[produto.name] = produto.sales.sum(:sale_quantity, :group => 'MONTH("created_at")') 
-      #vendas_do_mes.each do |venda|
-        #hash[produto.id] = venda.sum(:sale_quantity)
-      #end
     end
    hash
   end

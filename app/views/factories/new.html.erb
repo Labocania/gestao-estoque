@@ -1,21 +1,32 @@
 <h1>Compra nova:</h1>
-<%= form_for [@produto, @produto.factories.build] do |f| %>
 
-<% if @produto.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@produto.errors.count, "error") %> prohibited this article from being saved:</h2>
- 
-    <ul>
-    <% @produto.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+<div class="form-horizontal">
+  <%= form_for [@produto, @produto.factories.build] do |f| %>
+  
+  <% if @produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@produto.errors.count, "error") %> prohibited this article from being saved:</h2>
+   
+      <ul>
+      <% @produto.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <div class="col-lg-1">    
+      <%= f.label :quantidade %>
+      <%= f.number_field :selling_quantity, in: 1..1000, step: 1, default: 1, class:"form-control", id:"select" %>
+    </div>
   </div>
-<% end %>
-
-<%= f.label :quantidade %>
-<%= f.number_field :selling_quantity, in: 1..100, step: 1, default: 1 %>
-
-<%= f.submit "Comprar novo produto" %>
-
-<% end %>
+  
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-0">
+      <%= f.submit "Comprar novo produto", class:"btn btn-primary" %>
+    </div>
+  </div>
+  
+  <% end %>
+</div>
