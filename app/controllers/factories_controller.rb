@@ -7,8 +7,10 @@ class FactoriesController < ApplicationController
   def create
     @produto = Product.find(params[:product_id])
     @compra = @produto.factories.build(compras_params)
-    @produto.inventory += @compra.selling_quantity
-    if @compra.save & @produto.save
+    if @compra.valid? & @produto.valid?
+       @produto.inventory += @compra.selling_quantity
+       @produto.save
+       @compra.save
       flash[:success] = "Nova compra efetuada."
       redirect_to products_path
     else

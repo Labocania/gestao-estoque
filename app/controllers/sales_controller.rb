@@ -7,8 +7,10 @@ class SalesController < ApplicationController
   def create
     @produto = Product.find(params[:product_id])
     @venda = @produto.sales.build(vendas_params)
-    @produto.inventory -= @venda.sale_quantity
-    if @venda.save & @produto.save
+    if @venda.valid? & @produto.valid?
+      @produto.inventory -= @venda.sale_quantity
+      @venda.save 
+      @produto.save
       flash[:success] = "Nova venda efetuada."
       redirect_to products_path
     else
