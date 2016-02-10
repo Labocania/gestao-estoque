@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @produtos = Product.all
+    @produtos = Product.includes(:sales, :factories)
     @array = organizar(@produtos)
     @relatorio_top = relatorio(@produtos).sort_by { |name, sales| sales }.reverse.first(5)
     @relatorio_down = relatorio(@produtos).sort_by { |name, sales| sales }.first(5)
